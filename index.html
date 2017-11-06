@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Extract Magnet URL</title>
+	<style>
+
+		body {
+		    text-align: center;
+		}
+
+		input[type=text] {
+			width: 95%;
+			padding: 5px;
+			height: 32px;
+			border: 1px solid #ccc;
+			-webkit-border-radius: 2.5em;
+			border-radius: 2.5em;
+		}
+
+		input[type=text]:focus {
+			border: 1px solid #333;
+			-webkit-border-radius: 2.5em;
+			border-radius: 2.5em;
+		}
+
+	</style>
+</head>
+
+<body>
+	<p>Enter Magnet URL</p>
+	<input id="url" type="text" size="150">
+	<p id="result"></p>
+	<script type="text/javascript">
+		document.getElementById('url').addEventListener('change', processURL);
+		document.getElementById('url').addEventListener('keyup', processURL);
+
+		function processURL() {
+			var result = decodeURIComponent(this.value);
+			var decoded = decodeURIComponent(result.substr(result.indexOf('magnet:')));
+			if (decoded.length < 6) { decoded = 'Not Found the URL'}
+			document.getElementById('result').innerHTML = decoded;
+		}
+	</script>
+</body>
+
+</html>
